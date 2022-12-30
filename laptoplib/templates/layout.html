@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} LaptopLib {% endblock %}</title>
+    <!-- Moment JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+    <!-- Fontawesome CDN -->
+    <script src="https://kit.fontawesome.com/27c89bbf6c.js" crossorigin="anonymous"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base/index.css') }}">
+    {% block add_styles %} {% endblock %}
+</head>
+
+<body>
+    <!-- Navigation -->
+    {% include "components/navigation.html" %}
+
+    <!-- Validation Message -->
+    {% include "components/validation.html" %}
+
+    <!-- Content -->
+    <section id="content">
+        <!-- Flash Message -->
+        {% include "components/toast.html" %}
+        <!-- Contents -->
+        {% block content %} {% endblock %}
+    </section>
+    <!-- End Content -->
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 my-3">
+                    <div class="float-start">
+                        <div class="small">Created by</div>
+                        <div class="fw-light">Md Shamsur Rahman</div>
+                    </div>
+                </div>
+                <div class="col-6 my-3">
+                    <div class="float-end">
+                        <p class="badge bg-primary"><span>&copy;</span> 2022 Team Queue</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='scripts/post.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/comment.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/reply.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/up_down_vote.js') }}"></script>
+</body>
+
+</html>
