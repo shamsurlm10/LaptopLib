@@ -2,6 +2,10 @@ from datetime import date, datetime
 from flask_login import UserMixin
 from laptoplib import app, db, login_manager
 
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), nullable=False, unique=True)

@@ -24,48 +24,7 @@
 </head>
 
 <body>
-    <!-- Navigation -->
-    {% include "components/navigation.html" %}
-
-    <!-- Validation Message -->
-    {% include "components/validation.html" %}
-
-    <!-- Content -->
-    <section id="content">
-        <!-- Flash Message -->
-        {% include "components/toast.html" %}
-        <!-- Contents -->
-        {% block content %} {% endblock %}
-    </section>
-    <!-- End Content -->
-    <!-- Footer -->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 my-3">
-                    <div class="float-start">
-                        <div class="small">Created by</div>
-                        <div class="fw-light">Md Shamsur Rahman</div>
-                    </div>
-                </div>
-                <div class="col-6 my-3">
-                    <div class="float-end">
-                        <p class="badge bg-primary"><span>&copy;</span> 2022 Team Queue</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer -->
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='scripts/post.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/utils.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/comment.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/reply.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/up_down_vote.js') }}"></script>
+    {% block content %} {% endblock %}
 </body>
 
 </html>
