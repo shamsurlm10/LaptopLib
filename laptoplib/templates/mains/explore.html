@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %} LaptopLib {% endblock %}
+
+{% block add_styles %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-1">
+    <div class="p-5 text-light rounded jumborton-div d-flex align-items-center" style="background-color: #212529;">
+        <img src="https://cdn-icons-png.flaticon.com/512/610/610021.png" height="100px" alt="Brand Logo"
+            class="brand-logo-homepage">
+        <h1 class="mx-3">Explore Laptops</h1>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-6 g-4 mt-1">
+        <div class="col">
+            <div class="card shadow-card event-card h-100">
+                <img src="https://www.startech.com.bd/image/cache/catalog/laptop/asus/proart-studiobook-pro-16-oled-w7600h3a/proart-studiobook-pro-16-oled-w7600h3a-01-500x500.webp" class="card-img-top event-card-img"
+                    alt="Cover photo of the event">
+                <div class="card-body">
+                    <div class="card-text">
+                        <strong><i class="bi bi-laptop"></i> Model:</strong>
+                        HP
+                    </div>
+                    <div class="card-text">
+                        <strong><i class="bi bi-list-ul"></i> S/N:</strong>
+                        1010
+                    </div>
+                    <div class="card-text">
+                        <strong><i class="bi bi-circle-half"></i> Status:</strong>
+                        Available
+                    </div>
+                    <div class="card-text">
+                        <strong><i class="fas fa-money-check-alt"></i> Rate:</strong>
+                        50
+                    </div>
+                    <a href="{{url_for('mains.checkout')}}" class="btn btn-dark w-100 btn-sm mt-3">
+                        Rent
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
