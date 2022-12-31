@@ -1,8 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import (EmailField, IntegerField, BooleanField, PasswordField, StringField, SubmitField)
-from wtforms.validators import (DataRequired, Email, EqualTo, Length,
-                                ValidationError)
-from laptoplib.models import User
+from wtforms import (EmailField, IntegerField, BooleanField, PasswordField, SubmitField)
+from wtforms.validators import (DataRequired, EqualTo, Length,)
 
 
 class RegisterForm(FlaskForm):
@@ -35,3 +33,20 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField("Remember Me")
     
     submit = SubmitField("Login")
+
+class Credit(FlaskForm):
+    credit = IntegerField("Credit", validators=[
+        DataRequired(), Length(min=1, max=150)
+    ], render_kw={"placeholder": "Credit"})
+
+    buy = SubmitField("Buy")
+
+    gift_to = EmailField("Email", validators=[
+        DataRequired(), Length(min=4, max=150)
+    ], render_kw={"placeholder": "Email"})
+
+    amount = credit = IntegerField("Amount", validators=[
+        DataRequired(), Length(min=1, max=150)
+    ], render_kw={"placeholder": "Enter Amount"})
+    
+    gift = SubmitField("Gift")

@@ -7,7 +7,7 @@ from flask.helpers import flash
 from laptoplib import bcrypt, db
 from laptoplib import app
 from laptoplib.models import User, Laptop, Rent
-from laptoplib.users.forms import (LoginForm, RegisterForm)
+from laptoplib.users.forms import (LoginForm, RegisterForm, Credit)
 
 mains = Blueprint("mains", __name__)
 
@@ -51,6 +51,11 @@ def logout():
 @mains.route("/")
 def homepage():
     return render_template("mains/homepage.html")
+
+@mains.route("/credit")
+def credit():
+    form = Credit()
+    return render_template("mains/credit.html", form=form)
 
 @mains.route("/explore")
 def explore():

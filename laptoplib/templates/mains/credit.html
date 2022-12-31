@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %} LaptopLib {% endblock %}
+
+{% block add_styles %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-1">
+    <div class="p-5 text-light rounded jumborton-div d-flex align-items-center" style="background-color: #212529;">
+        <img src="https://cdn-icons-png.flaticon.com/512/610/610021.png" height="100px" alt="Brand Logo"
+            class="brand-logo-homepage">
+        <h1 class="mx-3">Buy & Gift</h1>
+    </div>
+
+    <div class="container form-brand mt-5">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 p-5">
+            <div class="mt-4">
+                <div class="card card-l card-body shadow-card p-4">
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3 mt-5">
+                            <h2 style="color: #212529;">Buy</h2>
+                            {{ form.credit(class="form-control input-box", id="credit") }}
+                        </div>
+                        <div class="mt-2">
+                            {{form.buy(class="btn btn-primary btn-sm mt-2 log-btn")}}
+                        </div>
+                        <hr>
+                        <div>
+                            <h2 style="color: #212529;">Gift</h2>
+                            {{form.gift_to(class="form-control input-box", id="email")}}
+                        </div>
+                        <div class="mt-2">
+                            {{form.amount(class="form-control input-box", id="amount")}}
+                        </div>
+                        <div class="mt-2">
+                            {{form.gift(class="btn btn-primary btn-sm mt-2 log-btn")}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
