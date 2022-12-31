@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import (EmailField, IntegerField, BooleanField, PasswordField, SubmitField)
-from wtforms.validators import (DataRequired, EqualTo, Length,)
+from wtforms import (BooleanField, EmailField, IntegerField, PasswordField,
+                     SubmitField)
+from wtforms.validators import DataRequired, EqualTo, Length
 
 
 class RegisterForm(FlaskForm):
@@ -36,17 +37,18 @@ class LoginForm(FlaskForm):
 
 class Credit(FlaskForm):
     credit = IntegerField("Credit", validators=[
-        DataRequired(), Length(min=1, max=150)
+        DataRequired()
     ], render_kw={"placeholder": "Credit"})
 
     buy = SubmitField("Buy")
 
+class GiftForm(FlaskForm):
     gift_to = EmailField("Email", validators=[
         DataRequired(), Length(min=4, max=150)
     ], render_kw={"placeholder": "Email"})
 
     amount = credit = IntegerField("Amount", validators=[
-        DataRequired(), Length(min=1, max=150)
+        DataRequired()
     ], render_kw={"placeholder": "Enter Amount"})
     
     gift = SubmitField("Gift")

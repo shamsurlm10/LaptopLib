@@ -22,26 +22,23 @@
                 <hr>
                 <div class="ms-4">
                     <div>
-                        <h5><i class="bi bi-laptop"></i> Model:</h5>
+                        <h5><i class="bi bi-laptop"></i> Model</h5>
                         <p class="trip-text">
-                            <b>ASUS ProArt Studiobook 16</b><br>
-                            H5600QM Ryzen 9 5900HX
-                            RTX 3060 6GB Graphics 16"
-                            OLED Laptop <br>
+                            <b>{{ laptop.model }}</b>
                         </p>
                     </div>
-                    <h5><i class="bi bi-list-ul"></i> Serial Number:</h5>
+                    <h5><i class="bi bi-list-ul"></i> Serial Number</h5>
                     <p class="trip-text">
-                        dfh45r71hb <br>
+                        <b>{{ laptop.serial_number }}</b> 
                     </p>
-                    <h5><i class="bi bi-circle-half"></i> Status:</h5>
+                    <h5><i class="bi bi-circle-half"></i> Status</h5>
                     <p class="trip-text">
-                        Available <br>
+                        {{ 'Available' if is_available else 'Not available' }}
                     </p>
                     <div class="flex-grow-1">
-                        <h5><i class="fas fa-money-check-alt"></i> Rate:</h5>
+                        <h5><i class="fas fa-money-check-alt"></i> Rate</h5>
                         <p class="trip-text">
-                        <p style="color: red;">50 Tk/hr</p>
+                        <p style="color: red;">{{ laptop.rate }} Tk/hr</p>
                         </p>
                     </div>
                     <div class="input-group mb-3">
@@ -50,7 +47,7 @@
                       </div>
                 </div>
             </div>
-            <a href="{{url_for('mains.checkout')}}" class="btn btn-dark w-100 btn-sm mt-3">
+            <a href="#" class="btn btn-dark w-100 btn-sm mt-3">
                 Confirm to Rent this Item
             </a>
         </div>

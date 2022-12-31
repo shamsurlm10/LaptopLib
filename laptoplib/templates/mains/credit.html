@@ -15,30 +15,19 @@
         <h1 class="mx-3">Buy & Gift</h1>
     </div>
 
-    <div class="container form-brand mt-5">
+    <div class="container form-brand mt-4">
     <div class="row">
         <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 p-5">
             <div class="mt-4">
                 <div class="card card-l card-body shadow-card p-4">
                     <form method="POST">
-                        {{ form.hidden_tag() }}
-                        <div class="mb-3 mt-5">
-                            <h2 style="color: #212529;">Buy</h2>
-                            {{ form.credit(class="form-control input-box", id="credit") }}
+                        {{ credit_form.hidden_tag() }}
+                        <div class="mb-3 mt-4">
+                            <h2 style="color: #212529;">Buy Credit</h2>
+                            {{ credit_form.credit(class="form-control input-box", id="credit") }}
                         </div>
-                        <div class="mt-2">
-                            {{form.buy(class="btn btn-primary btn-sm mt-2 log-btn")}}
-                        </div>
-                        <hr>
                         <div>
-                            <h2 style="color: #212529;">Gift</h2>
-                            {{form.gift_to(class="form-control input-box", id="email")}}
-                        </div>
-                        <div class="mt-2">
-                            {{form.amount(class="form-control input-box", id="amount")}}
-                        </div>
-                        <div class="mt-2">
-                            {{form.gift(class="btn btn-primary btn-sm mt-2 log-btn")}}
+                            {{credit_form.buy(class="btn btn-primary btn-sm mt-2 log-btn")}}
                         </div>
                     </form>
                 </div>

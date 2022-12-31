@@ -1,6 +1,9 @@
 from datetime import date, datetime
+
 from flask_login import UserMixin
+
 from laptoplib import app, db, login_manager
+
 
 @login_manager.user_loader
 def load_user(id):
@@ -46,11 +49,10 @@ class Rent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     rent_time = db.Column(db.DateTime, default=datetime.utcnow())
     duration = db.Column(db.Integer, default=5)
-    return_duration = db.Column(db.Integer, default=5)
+    return_duration = db.Column(db.Integer, default=None)
 
     laptop_id = db.Column(db.Integer, db.ForeignKey("laptop.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-
 
     def __init__(
         self, laptop_id: int, user_id: int
