@@ -12,7 +12,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    credits = db.Column(db.Integer, default=2000)
+    balance = db.Column(db.Integer, default=10000)
+    credits = db.Column(db.Integer, default=0)
 
     rents = db.relationship("Rent", backref="rented_by")
 
