@@ -56,7 +56,8 @@ def credit():
 
 @mains.route("/explore")
 def explore():
-    return render_template("mains/explore.html")
+    laptops=Laptop.query.all()
+    return render_template("mains/explore.html", laptops=laptops)
 
 @mains.route("/checkout")
 def checkout():
