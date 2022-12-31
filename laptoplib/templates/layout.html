@@ -1,97 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} LaptopLib {% endblock %}</title>
+        <!-- Moment JS CDN -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <!-- Bootstrap CDN -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} LaptopLib {% endblock %}</title>
-    <!-- Moment JS CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css"
+        />
+        <!-- Fontawesome CDN -->
+        <script
+            src="https://kit.fontawesome.com/27c89bbf6c.js"
+            crossorigin="anonymous"
+        ></script>
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            rel="stylesheet"
+        />
+        <!-- Custom CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{ url_for('static', filename='styles/base/index.css') }}"
+        />
+        {% block add_styles %} {% endblock %}
+    </head>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
-    <!-- Fontawesome CDN -->
-    <script src="https://kit.fontawesome.com/27c89bbf6c.js" crossorigin="anonymous"></script>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base/index.css') }}">
-    {% block add_styles %} {% endblock %}
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #000000;">
-        <div class="container">
-            <a class="navbar-brand" href="{{url_for('mains.homepage')}}"><img src="https://cdn-icons-png.flaticon.com/512/610/610021.png" href="{{url_for('mains.homepage')}}" height="50px" alt="Brand Logo"
-                class="brand-logo-homepage"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{url_for('mains.explore')}}"> <b>Explore</b></a>
-                    </li>
-                </ul>
-                <div class="d-flex ms-auto">
-                    {% if current_user.email %}
+    <body>
+        <nav
+            class="navbar navbar-expand-lg navbar-dark bg-dark"
+            style="background-color: #000000"
+        >
+            <div class="container">
+                <a class="navbar-brand" href="{{url_for('mains.homepage')}}"
+                    ><img
+                        src="https://cdn-icons-png.flaticon.com/512/610/610021.png"
+                        href="{{url_for('mains.homepage')}}"
+                        height="50px"
+                        alt="Brand Logo"
+                        class="brand-logo-homepage"
+                /></a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{url_for('mains.credit')}}"> <b>Buy & Gift Credit</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('mains.profile')}}" role="button">
-                                <b>Profile</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('mains.logout')}}" role="button">
-                                <b>Logout</b></a>
+                            <a
+                                class="nav-link"
+                                aria-current="page"
+                                href="{{url_for('mains.explore')}}"
+                            >
+                                <b>Explore</b></a
+                            >
                         </li>
                     </ul>
-                    {% else %}
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('mains.login')}}" role="button">
-                                <b>Login</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('mains.registration')}}" role="button">
-                                <b>Register</b></a>
-                        </li>
-                    </ul>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </nav>
-    {% block content %} {% endblock %}
-    <section id="content">
-
-    </section>
-
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 my-3">
-                    <div class="float-start">
-                        <div class="small">Created by</div>
-                        <div class="fw-light">Md Shamsur Rahman</div>
+                    <div class="d-flex ms-auto">
+                        {% if current_user.email %}
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    aria-current="page"
+                                    href="{{url_for('mains.credit')}}"
+                                >
+                                    <b>Buy & Gift Credit</b></a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{url_for('mains.profile', id=current_user.id)}}"
+                                    role="button"
+                                >
+                                    <b>Profile</b></a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{url_for('mains.logout')}}"
+                                    role="button"
+                                >
+                                    <b>Logout</b></a
+                                >
+                            </li>
+                        </ul>
+                        {% else %}
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{url_for('mains.login')}}"
+                                    role="button"
+                                >
+                                    <b>Login</b></a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{url_for('mains.registration')}}"
+                                    role="button"
+                                >
+                                    <b>Register</b></a
+                                >
+                            </li>
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="col-6 my-3">
-                    <div class="float-end">
-                        <p class="badge bg-primary"><span>&copy;</span> 2022 Team Queue</p>
+            </div>
+        </nav>
+        {% block content %} {% endblock %}
+        <section id="content"></section>
+
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 my-3">
+                        <div class="float-start">
+                            <div class="small">Created by</div>
+                            <div class="fw-light">Md Shamsur Rahman</div>
+                        </div>
+                    </div>
+                    <div class="col-6 my-3">
+                        <div class="float-end">
+                            <p class="badge bg-primary">
+                                <span>&copy;</span> 2022 Team Queue
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
-    
+        </footer>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>

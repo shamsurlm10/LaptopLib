@@ -1,5 +1,4 @@
 import os
-
 from datetime import datetime, timedelta
 
 from dotenv import load_dotenv
@@ -42,10 +41,7 @@ login_manager.login_view = "users.login_user"
 login_manager.login_message_category = "primary"
 
 
-
-
 import laptoplib.models
-
 from laptoplib.mains.routes import mains
 from laptoplib.users.routes import users
 
