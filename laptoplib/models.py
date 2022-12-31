@@ -46,7 +46,7 @@ class Rent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     rent_time = db.Column(db.DateTime, default=datetime.utcnow())
     duration = db.Column(db.Integer, default=5)
-
+    return_time = db.Column(db.DateTime, nullable=True)
 
     laptop_id = db.Column(db.Integer, db.ForeignKey("laptop.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))

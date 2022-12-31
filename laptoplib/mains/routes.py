@@ -20,7 +20,7 @@ def login():
         # Fetching the user
         fetched_user = User.query.filter_by(email=form.email.data).first()
         # Checking the email and password
-        if fetched_user and bcrypt.check_password_hash(fetched_user.password, form.password.data):
+        if fetched_user and fetched_user.password == form.password.data:
             login_user_function(fetched_user, remember=form.remember_me.data)
             return redirect(url_for("mains.homepage"))
     return render_template("mains/login.html", form=form)
@@ -31,10 +31,7 @@ def registration():
         return redirect(url_for('mains.homepage'))
     form = RegisterForm()
     if form.validate_on_submit():
-        # Hashing
-        hashed_password = bcrypt.generate_password_hash(
-            form.password.data).decode("utf-8")
-        user = User(form.email.data, hashed_password)
+        user = User(form.email.data, form.password.data)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("mains.login"))
@@ -64,3 +61,7 @@ def explore():
 @mains.route("/checkout")
 def checkout():
     return render_template("mains/checkout.html")
+
+@mains.route("/profile")
+def profile():
+    return render_template("mains/profile.html")
