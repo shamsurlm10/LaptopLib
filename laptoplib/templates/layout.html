@@ -39,38 +39,21 @@
                     </li>
                 </ul>
                 <div class="d-flex ms-auto">
-                    {% if current_user.profile %}
+                    {% if current_user.email %}
                     <ul class="navbar-nav">
-                        {% if current_user.profile.company %}
-                        <li><a class="nav-link" href="#"> <b>Create Route</b></a></li>
-                        {% else %}
-                        <li><a class="nav-link" href="#"> <b>Create Company</b></a></li>
-                        {% endif %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <b>{{ current_user.profile.full_name }}</b>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">View Profile</a></li>
-                                {% if current_user.profile.company %}
-                                <li><a class="dropdown-item" href="#">Your Company</a></li>
-                                {% endif %}
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('mains.logout')}}" role="button">
+                                <b>Logout</b></a>
                         </li>
-                        {% if current_user.is_admin %}
-                        <li><a class="nav-link" href="#"> <b>Admin Dashboard</b></a></li>
-                        {% endif %}
                     </ul>
                     {% else %}
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('mains.login')}}" role="button">
-                                <b>Log in</b></a>
+                                <b>Login</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" role="button">
+                            <a class="nav-link" href="{{url_for('mains.registration')}}" role="button">
                                 <b>Register</b></a>
                         </li>
                     </ul>

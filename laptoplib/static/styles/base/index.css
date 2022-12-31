@@ -1,0 +1,38 @@
+.log-btn{
+    background-color: #212529;
+    min-width: 80px;
+    border-radius:0.3rem;
+}
+
+.log-reg-text {
+    color: #212529; 
+    text-align: right;
+    font-size: 0.7rem;
+}
+.card-l{
+    width:400px; 
+    border:2px; 
+    background-color:#f1f1f1;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    align-items: center;
+    min-height: 47vh;
+}
+.card-r{
+    width:400px; 
+    border:2px; 
+    background-color:#f1f1f1;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    align-items: center;
+}
+
+.card-fp{
+    width:400px; 
+    border:2px; 
+    background-color:#f1f1f1;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    align-items: center;
+    min-height: 30vh;
+}

@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container mt-1">
     <div class="p-5 text-light rounded jumborton-div d-flex align-items-center" style="background-color: #212529;">
         <img src="https://cdn-icons-png.flaticon.com/512/610/610021.png" height="100px" alt="Brand Logo"
@@ -16,8 +15,8 @@
     </div>
 </div>
 <div class="container mt-2">
-    <div class="row">
-        <div class="col-md-5 mb-3">
+    <div class="row mb-3">
+        <div class="col-md-5">
             <div class="card card-company card-body shadow-card p-4 w-100">
                 <h3 class="trip-head">Specification</h3>
                 <hr>
@@ -27,7 +26,7 @@
                         <p class="trip-text">
                             <b>ASUS ProArt Studiobook 16</b><br>
                             H5600QM Ryzen 9 5900HX
-                            RTX 3060 6GB Graphics 16" 
+                            RTX 3060 6GB Graphics 16"
                             OLED Laptop <br>
                         </p>
                     </div>
@@ -42,46 +41,54 @@
                     <div class="flex-grow-1">
                         <h5><i class="fas fa-money-check-alt"></i> Rate:</h5>
                         <p class="trip-text">
-                            <h3 style="color: red;">50 Tk/hr</h3>
+                        <p style="color: red;">50 Tk/hr</p>
                         </p>
                     </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter Duration">
+                        <span class="input-group-text" id="basic-addon2"> 0 </span>
+                      </div>
                 </div>
             </div>
+            <a href="{{url_for('mains.checkout')}}" class="btn btn-dark w-100 btn-sm mt-3">
+                Confirm to Rent this Item
+            </a>
         </div>
-
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner text-center">
-                <div class="carousel-item active">
-                    <img class="image-size"
-                        src="https://www.startech.com.bd/image/cache/catalog/workstation/hp-brand/zbook-fury-g7/zbook-fury-g7-01-500x500.jpg"
-                        class="d-block w-100" alt="...">
+        <div class="col-md-7">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner text-center">
+                    <div class="carousel-item active">
+                        <img class="image-size"
+                            src="https://www.startech.com.bd/image/cache/catalog/workstation/hp-brand/zbook-fury-g7/zbook-fury-g7-01-500x500.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="image-size"
+                            src="https://www.startech.com.bd/image/cache/catalog/laptop/razer/blade-15-advanced-model/blade-15-advanced-model-01-500x500.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="image-size"
+                            src="https://www.startech.com.bd/image/cache/catalog/laptop/asus/proart-studiobook-pro-16-oled-w7600h3a/proart-studiobook-pro-16-oled-w7600h3a-01-500x500.webp"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="image-size"
+                            src="https://www.startech.com.bd/image/cache/catalog/laptop/hp-laptop/zbook-create-g7/zbook-create-g7-01-500x500.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="image-size"
-                        src="https://www.startech.com.bd/image/cache/catalog/laptop/razer/blade-15-advanced-model/blade-15-advanced-model-01-500x500.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img class="image-size"
-                        src="https://www.startech.com.bd/image/cache/catalog/laptop/asus/proart-studiobook-pro-16-oled-w7600h3a/proart-studiobook-pro-16-oled-w7600h3a-01-500x500.webp"
-                        class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img class="image-size"
-                        src="https://www.startech.com.bd/image/cache/catalog/laptop/hp-laptop/zbook-create-g7/zbook-create-g7-01-500x500.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </div>
 </div>

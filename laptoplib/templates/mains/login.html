@@ -2,8 +2,8 @@
 
 {% block title %} LaptopLib {% endblock %}
 
-{% block add_styles %}
-
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static', filename='style/base/log-reg.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -13,25 +13,41 @@
             <div class="mt-4">
                 <div class="card card-l card-body shadow-card p-4">
                     <form method="POST">
+                        {{ form.hidden_tag() }}
                         <div class="mb-3 mt-5">
-                            <input type="text">
+                            {% if form.email.errors%}
+                            {{ form.email(class="form-control input-box is-invalid ", id="email") }}
+                            <div class="invalid-feeedback">
+                                {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                                {%endfor%}
+                            </div>
+                            {% else %}
+                            {{ form.email(class="form-control input-box", id="email") }}
+                            {%endif%}
                         </div>
                         <div>
-                            <input type="text">
+                            {% if form.password.errors%}
+                            {{form.password(class="form-control input-box is-invalid", id="password")}}
+                            <div class="invalid-feeedback">
+                                {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                                {%endfor%}
+                            </div>
+                            {%else%}
+                            {{form.password(class="form-control input-box", id="password")}}
+                            {%endif%}
                         </div>
-                        <a href="#" class="mb-0 log-reg-text">
-                            <strong>Forget Password</strong>
-                        </a>
-        
-                        <div class="log-reg-text text-start">
+                        <div class="log-reg-text text-start mt-2">
+                            {{ form.remember_me(class="form-check-input") }}
                                 <strong class="align-self-center">Remember me</strong>
                         </div>
                         <div>
-                            <a href="#" class="link-dark log-reg-text">Create a new
+                            <a href="{{url_for('mains.registration')}}" class="link-dark log-reg-text">Create a new
                                 account!</a>
                         </div>
                         <div class="mt-2">
-                            <button>submit</button>
+                            {{form.submit(class="btn btn-primary btn-sm mt-2 log-btn")}}
                         </div>
                     </form>
                 </div>
