@@ -43,12 +43,19 @@ class Credit(FlaskForm):
     buy = SubmitField("Buy")
 
 class GiftForm(FlaskForm):
-    gift_to = EmailField("Email", validators=[
+    email = EmailField("Email", validators=[
         DataRequired(), Length(min=4, max=150)
     ], render_kw={"placeholder": "Email"})
 
-    amount = credit = IntegerField("Amount", validators=[
+    amount = IntegerField("Amount", validators=[
         DataRequired()
     ], render_kw={"placeholder": "Enter Amount"})
     
     gift = SubmitField("Gift")
+
+class CheckoutFrom(FlaskForm):
+    duration = IntegerField("Duration", validators=[
+        DataRequired()
+    ], render_kw={"placeholder": "duration"})
+    
+    confirm = SubmitField("Confirm")

@@ -36,3 +36,24 @@
     align-items: center;
     min-height: 30vh;
 }
+
+.buy{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3523/3523887.png');
+    background-position: center;
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+.gift{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/994/994393.png');
+    background-position: center;
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+.profile{
+    background-image: url('https://images.unsplash.com/photo-1510674485131-dc88d96369b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=649&q=80');
+    background-position: center;
+    background-size: 400px;
+    background-repeat: no-repeat;
+}

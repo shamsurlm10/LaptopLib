@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     credits = db.Column(db.Integer, default=0)
 
     rents = db.relationship("Rent", backref="rented_by")
+    transactions = db.relationship("Transaction", backref="sender")
 
     def __init__(
         self, email: str, password: str
@@ -55,7 +56,23 @@ class Rent(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __init__(
-        self, laptop_id: int, user_id: int
+        self, duration: int, laptop_id: int, user_id: int
     ) -> None:
         self.laptop_id = laptop_id
         self.user_id = user_id
+
+class Transaction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    credit_amount = db.Column(db.Integer, default=5)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+
+    sender_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    receiver_id = db.Column(db.Integer, nullable=False)
+
+
+    def __init__(
+        self, credit_amount:int, sender_id: int, receiver_id: int
+    ) -> None:
+        self.credit_amount = credit_amount
+        self.sender_id = sender_id
+        self.receiver_id = receiver_id

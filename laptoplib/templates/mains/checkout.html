@@ -38,18 +38,21 @@
                     <div class="flex-grow-1">
                         <h5><i class="fas fa-money-check-alt"></i> Rate</h5>
                         <p class="trip-text">
-                        <p style="color: red;">{{ laptop.rate }} Tk/hr</p>
+                        <p style="color: red;">{{ laptop.rate }} Tk/day</p>
                         </p>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter Duration">
-                        <span class="input-group-text" id="basic-addon2"> 0 </span>
-                      </div>
+                    <form method="POST">
+                        {{ checkout_form.hidden_tag() }}
+                        <div class="mb-3 mt-4">
+                            <h2 style="color: #212529;">Duration</h2>
+                            {{ checkout_form.duration(class="form-control input-box", id="duration") }}
+                        </div>
+                        <div>
+                            {{ checkout_form.confirm(class="btn btn-primary btn-sm mt-2 log-btn") }}
+                        </div>
+                    </form>
                 </div>
             </div>
-            <a href="#" class="btn btn-dark w-100 btn-sm mt-3">
-                Confirm to Rent this Item
-            </a>
         </div>
         <div class="col-md-7">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">

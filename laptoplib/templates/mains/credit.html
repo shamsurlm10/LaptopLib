@@ -16,25 +16,44 @@
     </div>
 
     <div class="container form-brand mt-4">
-    <div class="row">
-        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 p-5">
-            <div class="mt-4">
-                <div class="card card-l card-body shadow-card p-4">
-                    <form method="POST">
-                        {{ credit_form.hidden_tag() }}
-                        <div class="mb-3 mt-4">
-                            <h2 style="color: #212529;">Buy Credit</h2>
-                            {{ credit_form.credit(class="form-control input-box", id="credit") }}
-                        </div>
-                        <div>
-                            {{credit_form.buy(class="btn btn-primary btn-sm mt-2 log-btn")}}
-                        </div>
-                    </form>
+        <div class="row">
+            <div class="col-xl-6 col-md-4 p-5">
+                <div class="mt-4">
+                    <div class="card card-l card-body shadow-card p-4 buy">
+                        <form method="POST">
+                            {{ credit_form.hidden_tag() }}
+                            <div class="mb-3 mt-4">
+                                <h2 style="color: #212529;">Buy Credit</h2>
+                                {{ credit_form.credit(class="form-control input-box", id="credit") }}
+                            </div>
+                            <div>
+                                {{credit_form.buy(class="btn btn-primary btn-sm mt-2 log-btn")}}
+                            </div>
+                        </form>
+                    </div>
                 </div>
+            </div>
+            <div class="col-xl-6 col-md-4 p-5">
+                <div class="mt-4">
+                    <div class="card card-l card-body shadow-card p-4 gift">
+                        <form method="POST">
+                            {{ credit_form.hidden_tag() }}
+                            <div class="mb-3 mt-4">
+                                <h2 style="color: #212529;">Gift Credit</h2>
+                                {{ gift_form.amount(class="form-control input-box", id="amount") }}
+                                {{ gift_form.email(class="form-control input-box mt-1", id="email") }}
+                            </div>
+                            <div>
+                                {{gift_form.gift(class="btn btn-primary btn-sm mt-2 log-btn")}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
-</div>
+    
 </div>
 
 {% endblock %}

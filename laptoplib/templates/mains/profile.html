@@ -17,26 +17,33 @@ add_styles %} {% endblock %} {% block content %}
 
     <div class="container form-brand mt-4">
         <div class="row">
-            <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 p-5">
+            <div class="col-xl-6 col-md-4 p-5">
                 <div class="mt-4">
-                    <div class="card card-body">
+                    <div class="card card-l card-body shadow-card p-4 profile">
                         <form method="POST">
-                            <h2>{{ user.email }}</h2>
-                            <h5>Balance: {{ user.balance }}</h5>
-                            <h5>Credit: {{ user.credits }}</h5>
+                            <h2 style="color: #212529">Email:</h2>
+                            <h4>{{ user.email }}</h4>
+                            <hr>
+                            <h2>Balance: </h2>
+                            <h4>{{ user.balance }}</h4>
+                            <hr>
+                            <h2>Credit: </h2>
+                            <h4>{{ user.credits }}</h4>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        {% if rented %}
+            <div class="col-xl-6 col-md-4 p-5"></div>
+            {% if rented %}
         <div class="row mb-4">
-            <form action="{{ url_for('mains.returnLaptop', rent_id=rented.id) }}" method="POSt">
+            <form action="{{ url_for('mains.returnLaptop', rent_id=rented.id) }}" method="POST">
                 <input type="number" name="days" class="form-control mb-2" placeholder="How many days has been past?" />
                 <button type="submit" class="btn btn-primary">Return your rented laptop</button>
             </form>
         </div>
         {% endif %}
+        </div>
+        </div>
     </div>
 </div>
 
