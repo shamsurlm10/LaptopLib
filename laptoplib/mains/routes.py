@@ -98,6 +98,29 @@ def checkout(laptop_id: int):
     if not laptop:
         return render_template("mains/error.html", status=404, message="Laptop not found!")
     if checkout_form.validate_on_submit():
+        query = """CREATE OR REPLACE FUNCTION public.update_laptop_availability()
+        RETURNS trigger
+        LANGUAGE 'plpgsql'
+        COST 100
+        VOLATILE NOT LEAKPROOF
+        AS $BODY$
+        BEGIN
+        UPDATE laptop
+        SET is_available = (NEW.rent_time IS NULL)
+        WHERE id = NEW.laptop_id;
+        RETURN NEW;
+        END;
+        $BODY$;
+
+        ALTER FUNCTION public.update_laptop_availability()
+            OWNER TO postgres;
+
+        CREATE TRIGGER update_availability
+        AFTER INSERT OR UPDATE ON laptop
+        FOR EACH ROW EXECUTE PROCEDURE update_laptop_availability();"""
+        # db.engine.execute(text(query))
+        sql = f'UPDATE laptop SET is_available = FALSE WHERE id = {laptop.id}'
+        db.engine.execute(sql)
         duration = checkout_form.duration.data
         rent = Rent(duration, laptop_id, current_user.id)
         db.session.add(rent)
@@ -106,7 +129,7 @@ def checkout(laptop_id: int):
     
     return render_template("mains/checkout.html", laptop=laptop, checkout_form=checkout_form)
 
-@mains.route("/return-laptop/<int:rent_id>", methods=['POSt'])
+@mains.route("/return-laptop/<int:rent_id>", methods=['POST'])
 @login_required
 def returnLaptop(rent_id: int):
     rent = Rent.query.get(rent_id)

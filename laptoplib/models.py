@@ -60,6 +60,7 @@ class Rent(db.Model):
     ) -> None:
         self.laptop_id = laptop_id
         self.user_id = user_id
+        self.duration = duration
 
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
