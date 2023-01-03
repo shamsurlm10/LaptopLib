@@ -98,27 +98,26 @@ def checkout(laptop_id: int):
     if not laptop:
         return render_template("mains/error.html", status=404, message="Laptop not found!")
     if checkout_form.validate_on_submit():
-        query = """CREATE OR REPLACE FUNCTION public.update_laptop_availability()
-        RETURNS trigger
-        LANGUAGE 'plpgsql'
-        COST 100
-        VOLATILE NOT LEAKPROOF
+        rented = Rent.query.filter_by(user_id=current_user.id, return_duration=None).first()
+        if rented:
+            return redirect(url_for('mains.profile', id=current_user.id))
+        q1 = """CREATE OR REPLACE FUNCTION public.update_laptop_availability()
+            RETURNS trigger
+            LANGUAGE 'plpgsql'
+            COST 100
+            VOLATILE NOT LEAKPROOF
         AS $BODY$
         BEGIN
-        UPDATE laptop
+        UPDATE public."laptop"
         SET is_available = (NEW.rent_time IS NULL)
         WHERE id = NEW.laptop_id;
-        RETURN NEW;
+        RETURN NULL;
         END;
         $BODY$;
-
         ALTER FUNCTION public.update_laptop_availability()
             OWNER TO postgres;
-
-        CREATE TRIGGER update_availability
-        AFTER INSERT OR UPDATE ON laptop
-        FOR EACH ROW EXECUTE PROCEDURE update_laptop_availability();"""
-        # db.engine.execute(text(query))
+        """
+        db.engine.execute(text(q1))
         sql = f'UPDATE laptop SET is_available = FALSE WHERE id = {laptop.id}'
         db.engine.execute(sql)
         duration = checkout_form.duration.data
@@ -160,15 +159,16 @@ def returnLaptop(rent_id: int):
     END;
     $BODY$;
 
-    ALTER FUNCTION public.total_rate(numeric, numeric)
-        OWNER TO postgres;
+    ALTER FUNCTION public.total_rate(numeric, numeric, numeric)
+    OWNER TO postgres;
 
 
     CREATE OR REPLACE PROCEDURE public.update_user_credits(
         id numeric,
         duration numeric,
         return_duration numeric,
-        rate numeric
+        rate numeric,
+        lap_id numeric
     )
     LANGUAGE 'plpgsql'
     AS $BODY$
@@ -179,14 +179,15 @@ def returnLaptop(rent_id: int):
         UPDATE public."user"
         SET credits = credits - total_rate(duration, return_duration, rate)
         WHERE public."user".id = user_id;
+        UPDATE public."laptop" SET is_available= TRUE where public."laptop".id = lap_id;
     END;
     $BODY$;
-    ALTER PROCEDURE public.update_user_credits(numeric, numeric, numeric)
+    ALTER PROCEDURE public.update_user_credits(numeric, numeric, numeric, numeric, numeric)
         OWNER TO postgres;
     """
     # query1_formatted = """CALL public.update_user_credits(13, 32, 20, 83);"""
-    query1 = """CALL public.update_user_credits({}, {}, {}, {});"""
-    query1_formatted = query1.format(current_user.id, rent.duration, days, rent.rented_laptop.rate)
+    query1 = """CALL public.update_user_credits({}, {}, {}, {}, {});"""
+    query1_formatted = query1.format(current_user.id, rent.duration, days, rent.rented_laptop.rate, rent.laptop_id)
     # print("--------")
     # print(query1_formatted)
     db.engine.execute(query+query1_formatted)
